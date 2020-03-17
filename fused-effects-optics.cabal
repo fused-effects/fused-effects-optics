@@ -22,11 +22,13 @@ source-repository head
 
 library
   hs-source-dirs:      src
-  exposed-modules:     FusedEffectsOptics
-                       
+  exposed-modules:     Control.Effect.Optics
+
 
   build-depends:       base ^>= 4.13.0.0
-                     
+                     , fused-effects == 1.*
+                     , optics ^>= 0.2
+
 
   ghc-options:         -Wall
                        -Wincomplete-uni-patterns
@@ -48,7 +50,7 @@ test-suite fused-effects-optics-test
 
   build-depends:       base ^>= 4.13.0.0
                      , fused-effects-optics
-                     
+
 
   ghc-options:         -Wall
                        -threaded
