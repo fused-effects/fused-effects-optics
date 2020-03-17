@@ -1,0 +1,67 @@
+cabal-version:       2.0
+name:                fused-effects-optics
+version:             0.0.0.0
+synopsis:            Bridge between the optics and fused-effects ecosystems.
+description:         Bridge between the optics and fused-effects ecosystems.
+homepage:            https://github.com/patrickt/fused-effects-optics
+bug-reports:         https://github.com/patrickt/fused-effects-optics/issues
+license:             MIT
+license-file:        LICENSE
+author:              Patrick Thomson
+maintainer:          patrick.william.thomson@gmail.com
+copyright:           2020 Patrick Thomson
+category:            Control
+build-type:          Simple
+extra-doc-files:     README.md
+                   , CHANGELOG.md
+tested-with:         GHC == 8.8.1
+
+source-repository head
+  type:                git
+  location:            https://github.com/patrickt/fused-effects-optics.git
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     FusedEffectsOptics
+                       
+
+  build-depends:       base ^>= 4.13.0.0
+                     
+
+  ghc-options:         -Wall
+                       -Wincomplete-uni-patterns
+                       -Wincomplete-record-updates
+                       -Wcompat
+                       -Widentities
+                       -Wredundant-constraints
+                       -fhide-source-paths
+                       -Wmissing-export-lists
+                       -Wpartial-fields
+                       -Wmissing-deriving-strategies
+
+  default-language:    Haskell2010
+
+test-suite fused-effects-optics-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+
+  build-depends:       base ^>= 4.13.0.0
+                     , fused-effects-optics
+                     
+
+  ghc-options:         -Wall
+                       -threaded
+                       -rtsopts
+                       -with-rtsopts=-N
+                       -Wincomplete-uni-patterns
+                       -Wincomplete-record-updates
+                       -Wcompat
+                       -Widentities
+                       -Wredundant-constraints
+                       -fhide-source-paths
+                       -Wmissing-export-lists
+                       -Wpartial-fields
+                       -Wmissing-deriving-strategies
+
+  default-language:    Haskell2010
