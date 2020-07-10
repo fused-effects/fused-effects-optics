@@ -5,7 +5,9 @@
 
 module Control.Effect.Optics
   ( eview,
+    eviews,
     use,
+    uses,
     preuse,
     assign,
     modifying,
@@ -35,6 +37,18 @@ eview ::
 eview l = Reader.asks (view l)
 {-# INLINE eview #-}
 
+-- | Apply a function to the target of a 'Lens', 'Iso', or 'Getter' in the current context.
+eviews ::
+  forall r a b m sig k is.
+  ( Is k A_Getter,
+    Has (Reader.Reader r) sig m
+  ) =>
+  Optic' k is r a ->
+  (a -> b) ->
+  m b
+eviews l f = Reader.asks (f . view l)
+{-# INLINE eviews #-}
+
 -- * State operations
 
 -- | Use the target of a 'Lens', 'Iso', or 'Getter' in the current state.
@@ -47,6 +61,18 @@ use ::
   m a
 use l = State.gets (view l)
 {-# INLINE use #-}
+
+-- | Apply a function to the target of a 'Lens', 'Iso', or 'Getter' in the current state.
+uses ::
+  forall s a b m sig k is.
+  ( Is k A_Getter,
+    Has (State.State s) sig m
+  ) =>
+  Optic' k is s a ->
+  (a -> b) ->
+  m b
+uses l f = State.gets (f . view l)
+{-# INLINE uses #-}
 
 -- | Use the target of a 'AffineTraversal' or 'AffineFold' in the current state.
 preuse ::

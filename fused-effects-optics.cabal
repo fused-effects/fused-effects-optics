@@ -1,6 +1,6 @@
 cabal-version:       2.0
 name:                fused-effects-optics
-version:             0.0.0.0
+version:             0.1.0.0
 synopsis:            Bridge between the optics and fused-effects ecosystems.
 description:         Bridge between the optics and fused-effects ecosystems.
 homepage:            https://github.com/patrickt/fused-effects-optics
