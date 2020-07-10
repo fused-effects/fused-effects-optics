@@ -4,13 +4,16 @@
 {-# LANGUAGE TypeApplications #-}
 
 module Control.Effect.Optics
-  ( eview,
+  ( -- * Reader operations
+    eview,
     eviews,
+    -- * State operations
     use,
     uses,
     preuse,
     assign,
     modifying,
+    -- * Infix operators
     (.=),
     (?=),
     (%=),
@@ -20,8 +23,6 @@ where
 import Control.Effect.Reader as Reader
 import Control.Effect.State as State
 import Optics.Core
-
--- * Reader operations
 
 -- | View the target of a 'Lens', 'Iso', or 'Getter' in the current context.
 --
@@ -48,8 +49,6 @@ eviews ::
   m b
 eviews l f = Reader.asks (f . view l)
 {-# INLINE eviews #-}
-
--- * State operations
 
 -- | Use the target of a 'Lens', 'Iso', or 'Getter' in the current state.
 use ::
