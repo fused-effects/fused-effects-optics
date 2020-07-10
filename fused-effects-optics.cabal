@@ -3,8 +3,8 @@ name:                fused-effects-optics
 version:             0.1.0.0
 synopsis:            Bridge between the optics and fused-effects ecosystems.
 description:         Bridge between the optics and fused-effects ecosystems.
-homepage:            https://github.com/patrickt/fused-effects-optics
-bug-reports:         https://github.com/patrickt/fused-effects-optics/issues
+homepage:            https://github.com/fused-effects/fused-effects-optics
+bug-reports:         https://github.com/fused-effects/fused-effects-optics/issues
 license:             MIT
 license-file:        LICENSE
 author:              Patrick Thomson
@@ -19,7 +19,7 @@ tested-with:         GHC == 8.8.3
 
 source-repository head
   type:                git
-  location:            https://github.com/patrickt/fused-effects-optics.git
+  location:            https://github.com/fused-effects/fused-effects-optics.git
 
 library
   hs-source-dirs:      src
