@@ -14,7 +14,8 @@ category:            Control
 build-type:          Simple
 extra-doc-files:     README.md
                    , CHANGELOG.md
-tested-with:         GHC == 8.8.1
+tested-with:         GHC == 8.8.3
+                     GHC == 8.10.1
 
 source-repository head
   type:                git
@@ -25,37 +26,11 @@ library
   exposed-modules:     Control.Effect.Optics
 
 
-  build-depends:       base ^>= 4.13.0.0
-                     , fused-effects == 1.*
-                     , optics ^>= 0.2
-
-
-  ghc-options:         -Wall
-                       -Wincomplete-uni-patterns
-                       -Wincomplete-record-updates
-                       -Wcompat
-                       -Widentities
-                       -Wredundant-constraints
-                       -fhide-source-paths
-                       -Wmissing-export-lists
-                       -Wpartial-fields
-                       -Wmissing-deriving-strategies
-
-  default-language:    Haskell2010
-
-test-suite fused-effects-optics-test
-  type:                exitcode-stdio-1.0
-  hs-source-dirs:      test
-  main-is:             Spec.hs
-
-  build-depends:       base ^>= 4.13.0.0
-                     , fused-effects-optics
-
+  build-depends:       base >= 4.12 && < 4.15
+                     , fused-effects >= 1 && < 1.2
+                     , optics-core >= 0.3
 
   ghc-options:         -Wall
-                       -threaded
-                       -rtsopts
-                       -with-rtsopts=-N
                        -Wincomplete-uni-patterns
                        -Wincomplete-record-updates
                        -Wcompat

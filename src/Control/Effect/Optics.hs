@@ -17,11 +17,14 @@ where
 
 import Control.Effect.Reader as Reader
 import Control.Effect.State as State
-import Optics hiding (assign, modifying, preuse, use)
+import Optics.Core
 
 -- * Reader operations
 
 -- | View the target of a 'Lens', 'Iso', or 'Getter' in the current context.
+--
+-- This function is prefixed so as not to collide with 'Optics.Core.view'.
+--
 eview ::
   forall r a m sig k is.
   ( Is k A_Getter,
@@ -30,6 +33,7 @@ eview ::
   Optic' k is r a ->
   m a
 eview l = Reader.asks (view l)
+{-# INLINE eview #-}
 
 -- * State operations
 
@@ -53,6 +57,7 @@ preuse ::
   Optic' k is s a ->
   m (Maybe a)
 preuse l = State.gets (preview l)
+{-# INLINE preuse #-}
 
 -- | Replace the target(s) of an Optic in our monadic state with a new value, irrespective of the old.
 -- The action and the optic operation are applied strictly.
@@ -66,7 +71,8 @@ assign ::
   Optic k is s s a b ->
   b ->
   m ()
-assign l = State.modify . set' l
+assign l x = State.modify (set' l x)
+{-# INLINE assign #-}
 
 -- | Map over the target(s) of an 'Optic' in our monadic state.
 -- The action and the optic operation are applied strictly.
@@ -77,7 +83,8 @@ modifying ::
   Optic k is s s a b ->
   (a -> b) ->
   m ()
-modifying l = State.modify . over' l
+modifying l x = State.modify (over' l x)
+{-# INLINE modifying #-}
 
 -- * Operators
 
@@ -100,6 +107,7 @@ infix 4 %=
   b ->
   m ()
 (.=) = assign
+{-# INLINE (.=) #-}
 
 -- | Replace the target(s) of an Optic in our monadic state with 'Just' a new value, irrespective of the old.
 -- The action and the optic operation are applied strictly.
@@ -112,6 +120,7 @@ infix 4 %=
   b ->
   m ()
 l ?= a = State.modify (set l (Just a))
+{-# INLINE (?=) #-}
 
 -- | Map over the target(s) of an 'Optic' in our monadic state.
 -- The action and the optic operation are applied strictly.
@@ -123,3 +132,4 @@ l ?= a = State.modify (set l (Just a))
   (a -> b) ->
   m ()
 (%=) = modifying
+{-# INLINE (%=) #-}
