@@ -2,7 +2,7 @@ cabal-version:       2.0
 name:                fused-effects-optics
 version:             0.1.0.0
 synopsis:            Bridge between the optics and fused-effects ecosystems.
-description:         Bridge between the optics and fused-effects ecosystems.
+description:         Provides combinators for the optics-based manipulation of state and context types provided by the fused-effects library, similar to those provided by optics-extra for mtl-based monad transformers.
 homepage:            https://github.com/fused-effects/fused-effects-optics
 bug-reports:         https://github.com/fused-effects/fused-effects-optics/issues
 license:             MIT
