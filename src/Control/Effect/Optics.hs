@@ -7,12 +7,15 @@ module Control.Effect.Optics
   ( -- * Reader operations
     eview,
     eviews,
+    locally,
+
     -- * State operations
     use,
     uses,
     preuse,
     assign,
     modifying,
+
     -- * Infix operators
     (.=),
     (?=),
@@ -27,7 +30,6 @@ import Optics.Core
 -- | View the target of a 'Lens', 'Iso', or 'Getter' in the current context.
 --
 -- This function is prefixed so as not to collide with 'Optics.Core.view'.
---
 eview ::
   forall r a m sig k is.
   ( Is k A_Getter,
@@ -49,6 +51,18 @@ eviews ::
   m b
 eviews l f = Reader.asks (f . view l)
 {-# INLINE eviews #-}
+
+-- | Given a monadic argument, evaluate it in a context modified by applying
+-- the provided function to the target of the provided 'Setter', 'Lens', or 'Traversal'.
+locally ::
+  ( Is k A_Setter,
+    Has (Reader.Reader r) sig m
+  ) =>
+  Optic k is r r a b ->
+  (a -> b) ->
+  m c ->
+  m c
+locally l f = Reader.local (over l f)
 
 -- | Use the target of a 'Lens', 'Iso', or 'Getter' in the current state.
 use ::
