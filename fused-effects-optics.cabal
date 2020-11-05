@@ -24,6 +24,7 @@ source-repository head
 library
   hs-source-dirs:      src
   exposed-modules:     Control.Effect.Optics
+                       Control.Effect.Optics.Indexed
 
 
   build-depends:       base >= 4.12 && < 4.15
