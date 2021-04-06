@@ -1,6 +1,6 @@
 cabal-version:       2.2
 name:                fused-effects-optics
-version:             0.1.0.0
+version:             0.2.0.0
 synopsis:            Bridge between the optics and fused-effects ecosystems.
 description:         Provides combinators for the optics-based manipulation of state and context types provided by the fused-effects library, similar to those provided by optics-extra for mtl-based monad transformers.
 homepage:            https://github.com/fused-effects/fused-effects-optics
@@ -27,7 +27,7 @@ library
                        Control.Effect.Optics.Indexed
 
 
-  build-depends:       base >= 4.12 && < 4.15
+  build-depends:       base >= 4.12 && < 4.16
                      , fused-effects >= 1 && < 1.2
                      , optics-core >= 0.3
 

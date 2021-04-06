@@ -5,8 +5,8 @@
 
 module Control.Effect.Optics
   ( -- * Reader operations
-    eview,
-    eviews,
+    Control.Effect.Optics.view,
+    Control.Effect.Optics.views,
     locally,
 
     -- * State operations
@@ -29,19 +29,20 @@ import Optics.Core
 
 -- | View the target of a 'Lens', 'Iso', or 'Getter' in the current context.
 --
--- This function is prefixed so as not to collide with 'Optics.Core.view'.
-eview ::
+-- Because functions implement 'Reader.Reader', you can use this wherever
+-- you would use the 'Optics.Core.view' function in @optics@.
+view ::
   forall r a m sig k is.
   ( Is k A_Getter,
     Has (Reader.Reader r) sig m
   ) =>
   Optic' k is r a ->
   m a
-eview l = Reader.asks (view l)
-{-# INLINE eview #-}
+view l = Reader.asks (Optics.Core.view l)
+{-# INLINE view #-}
 
 -- | Apply a function to the target of a 'Lens', 'Iso', or 'Getter' in the current context.
-eviews ::
+views ::
   forall r a b m sig k is.
   ( Is k A_Getter,
     Has (Reader.Reader r) sig m
@@ -49,8 +50,8 @@ eviews ::
   Optic' k is r a ->
   (a -> b) ->
   m b
-eviews l f = Reader.asks (f . view l)
-{-# INLINE eviews #-}
+views l f = Reader.asks (f . Optics.Core.view l)
+{-# INLINE views #-}
 
 -- | Given a monadic argument, evaluate it in a context modified by applying
 -- the provided function to the target of the provided 'Setter', 'Lens', or 'Traversal'.
@@ -72,7 +73,7 @@ use ::
   ) =>
   Optic' k is s a ->
   m a
-use l = State.gets (view l)
+use l = State.gets (Optics.Core.view l)
 {-# INLINE use #-}
 
 -- | Apply a function to the target of a 'Lens', 'Iso', or 'Getter' in the current state.
@@ -84,7 +85,7 @@ uses ::
   Optic' k is s a ->
   (a -> b) ->
   m b
-uses l f = State.gets (f . view l)
+uses l f = State.gets (f . Optics.Core.view l)
 {-# INLINE uses #-}
 
 -- | Use the target of a 'AffineTraversal' or 'AffineFold' in the current state.
