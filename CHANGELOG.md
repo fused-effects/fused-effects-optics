@@ -6,6 +6,7 @@ The changelog is available [on GitHub][2].
 ## 0.0.2.0
 
 * GHC 9 support.
+* Add `Control.Effect.Optics.Indexed` module.
 * `eview` and `eviews` are renamed to `view` and `views`.
 * Added `locally`.
 
