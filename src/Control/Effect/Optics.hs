@@ -30,7 +30,8 @@ import Optics.Core
 -- | View the target of a 'Lens', 'Iso', or 'Getter' in the current context.
 --
 -- Because functions implement 'Reader.Reader', you can use this wherever
--- you would use the 'Optics.Core.view' function in @optics@.
+-- you would use the @view@ function in @optics@, as well as the @gview@
+-- operation in @optics-extra@.
 view ::
   forall r a m sig k is.
   ( Is k A_Getter,
