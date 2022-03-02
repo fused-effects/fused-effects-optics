@@ -27,9 +27,9 @@ library
                        Control.Effect.Optics.Indexed
 
 
-  build-depends:       base >= 4.12 && < 4.16
+  build-depends:       base >= 4.12 && < 4.17
                      , fused-effects >= 1 && < 1.2
-                     , optics-core >= 0.3
+                     , optics-core == 0.*
 
   ghc-options:         -Wall
                        -Wincomplete-uni-patterns

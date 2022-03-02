@@ -20,6 +20,7 @@ module Control.Effect.Optics
     (.=),
     (?=),
     (%=),
+    (<~),
   )
 where
 
@@ -174,3 +175,7 @@ l ?= a = State.modify (set l (Just a))
   m ()
 (%=) = modifying
 {-# INLINE (%=) #-}
+
+-- | Run the provided monadic action and assign it to the target of a 'Setter'.
+(<~) :: (Is k A_Setter, Has (State s) sig m) => Optic k is s s a b -> m b -> m ()
+l <~ mb = mb >>= assign l
