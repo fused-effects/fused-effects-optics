@@ -3,12 +3,12 @@
 `fused-effects-optics` uses [PVP Versioning][1].
 The changelog is available [on GitHub][2].
 
-## 0.0.3.0
+## 0.2.1.0
 
 * GHC 9.2 support.
 * Add `<~` operator.
 
-## 0.0.2.0
+## 0.2.0.0
 
 * GHC 9 support.
 * Add `Control.Effect.Optics.Indexed` module.
