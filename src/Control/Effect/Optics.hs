@@ -119,6 +119,7 @@ assign l x = State.modify (set' l x)
 -- | Map over the target(s) of an 'Optic' in our monadic state.
 -- The action and the optic operation are applied strictly.
 modifying ::
+  forall s a b m sig k is.
   ( Is k A_Setter,
     Has (State.State s) sig m
   ) =>
