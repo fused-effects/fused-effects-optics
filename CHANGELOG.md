@@ -3,6 +3,10 @@
 `fused-effects-optics` uses [PVP Versioning][1].
 The changelog is available [on GitHub][2].
 
+## 0.3.0.0
+
+* Specify ordering of `modifying` type variables (thanks @)
+
 ## 0.2.1.0
 
 * GHC 9.2 support.
